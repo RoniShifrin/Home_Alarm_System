@@ -1,3 +1,12 @@
+--------------------- Title ------------------------
+-- Project Name: HA_System
+-- File Name: Sensors_logic.vhd
+-- Author: Yuval Kogan
+-- Ver: 0
+-- Created Date: 23/11/25
+----------------------------------------------------
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.NUMERIC_STD.all;

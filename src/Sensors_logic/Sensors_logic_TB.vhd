@@ -1,3 +1,12 @@
+--------------------- Title ------------------------
+-- Project Name: HA_System
+-- File Name: Sensors_logic_TB.vhd
+-- Author: Yuval Kogan
+-- Ver: 0
+-- Created Date: 23/11/25
+----------------------------------------------------
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -6,7 +15,7 @@ use std.textio.all;
 entity Sensors_logic_TB is
 end Sensors_logic_TB;
 
-architecture test_bench_arch of Sensors_logic_TB is
+architecture test_bench of Sensors_logic_TB is
 
     -- DUT Component Declaration
     component Sensors_logic
@@ -208,4 +217,4 @@ begin
 
     end process STIM_GEN;
 
-end architecture test_bench_arch;
+end architecture test_bench;
