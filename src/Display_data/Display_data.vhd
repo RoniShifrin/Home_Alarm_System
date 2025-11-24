@@ -19,6 +19,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity Display_data is
+    generic (
+        N_bit : integer := 3
+    ); 
+
     port (
         clk         : in  std_logic;
         Rst         : in  std_logic;
@@ -29,6 +33,7 @@ entity Display_data is
 end Display_data;
 
 architecture behavior of Display_data is
+    
 begin
 
 end architecture behavior;
