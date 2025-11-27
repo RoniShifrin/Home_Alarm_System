@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity Code_register is
     generic (
         N : INTEGER := 2;
-        PASSWORD : STD_LOGIC_VECTOR((N - 1) DOWNTO 0) := "01"
+        PASSWORD : STD_LOGIC_VECTOR := "01"
     );
 
     port (

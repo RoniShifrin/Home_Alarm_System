@@ -15,8 +15,6 @@ entity Press_duration_measure_TB is
 end Press_duration_measure_TB;
 
 
-
-
 architecture test_bench of Press_duration_measure_TB is
 
     component Press_duration_measure is
@@ -168,10 +166,3 @@ begin
     end process STIM_PROC;
 
 end architecture test_bench;
---------------------- Title ------------------------
--- Project Name: HA_System
--- File Name: Press_duration_measure_TB.vhd
--- Author: Roni Shifrin
--- Ver: 0
--- Created Date: 23/11/25
-----------------------------------------------------

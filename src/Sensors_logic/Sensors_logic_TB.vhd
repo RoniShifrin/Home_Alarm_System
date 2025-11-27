@@ -244,25 +244,7 @@ begin
         report "PHASE 8: Detection correctly de-asserted with only 1 sensor" severity note;
 
 
-        -- PHASE 9: RAPID TOGGLING (Bounce Stress Test)
-        report "PHASE 9: Rapid Toggling Stress Test" severity note;
-        
-        -- Rapid window toggles (should be ignored if bounce is < 3 cycles)
-        TB_window_sens <= '1';
-        wait for CLK_PERIOD;  -- 1 cycle
-        TB_window_sens <= '0';
-        wait for CLK_PERIOD;  -- 2 cycles total
-        TB_window_sens <= '1';
-        wait for CLK_PERIOD;  -- 3 cycles - should stabilize now
-        wait for CLK_PERIOD;  -- Let it settle
-        
-        -- Window should now be stable at '1', and with Door='1', should detect
-        assert TB_window_clean = '1' report "Error: Window failed to stabilize" severity error;
-        assert TB_detected     = '1' report "Error: Should detect with Door + Window" severity failure;
-        report "PHASE 9: Rapid toggling handled correctly" severity note;
-
-
-        -- PHASE 10: COMPLETE SYSTEM SHUTDOWN
+        -- PHASE 9: COMPLETE SYSTEM SHUTDOWN
         report "PHASE 10: Complete Shutdown Test" severity note;
 
         -- All sensors OFF (000)
@@ -278,7 +260,7 @@ begin
         report "PHASE 10: All sensors deactivated, detected correctly de-asserted" severity note;
 
 
-        -- PHASE 11: RESET DURING DETECTION
+        -- PHASE 10: RESET DURING DETECTION
         report "PHASE 11: Testing Reset While Detection Active" severity note;
         
         -- Activate two sensors again

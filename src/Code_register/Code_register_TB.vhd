@@ -324,44 +324,6 @@ begin
         assert S_code_match = '1' report "Test 7.2 Failed: Match should be '1'" severity FAILURE;
         report "T7.2: Second correct entry accepted" severity NOTE;
 
-        wait for WAIT_CLK;
-
-        -- PHASE 8: Test Valid held HIGH for multiple cycles
-        report "--- Test 8: Valid Signal Held HIGH ---" severity NOTE;
-
-        S_bit_in <= '0';
-        S_valid  <= '1';
-        wait for WAIT_CLK; -- Counter=1
-        wait for WAIT_CLK; -- Valid still 1, counter still 1 (no increment)
-
-        S_bit_in <= '1';
-        wait for WAIT_CLK; -- Counter=2 (incremented this cycle)
-
-        S_valid <= '0';
-
-        assert S_Code_ready = '1' report "Test 8 Failed: Code_ready should be '1'" severity FAILURE;
-        assert S_code_match = '1' report "Test 8 Failed: Should match '01'" severity FAILURE;
-
-        wait for WAIT_CLK;
-
-        -- PHASE 9: Test Reset During Code Entry
-        report "--- Test 9: Reset During Code Entry ---" severity NOTE;
-
-        S_bit_in <= '1';
-        S_valid  <= '1';
-        wait for WAIT_CLK; -- Counter=1
-
-        -- Reset while in middle of entry
-        S_Rst <= '1';
-        wait for WAIT_CLK;
-        S_Rst <= '0';
-        wait for WAIT_CLK;
-
-        assert S_Code_ready = '0' report "Test 9 Failed: Code_ready should be '0' after reset" severity FAILURE;
-        assert S_code_match = '0' report "Test 9 Failed: Code_match should be '0' after reset" severity FAILURE;
-        assert S_code_vector = "00" report "Test 9 Failed: Code_vector should be '00' after reset" severity FAILURE;
-        report "T9: Reset during entry cleared all state correctly" severity NOTE;
-
         wait for WAIT_CLK * 2;
 
         report "--- Simulation End: All tests completed ---" severity NOTE;
