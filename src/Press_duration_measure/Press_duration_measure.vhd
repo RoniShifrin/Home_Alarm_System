@@ -45,45 +45,47 @@ begin
             bit_vaild   <= '0';
 
         elsif rising_edge(Clk) then
-            -- default: capture previous button value
+            -- 1. Sample previous state for edge detection
             btn_prev <= btn_in;
 
-            -- Manage valid pulse timing
+            -- 2. Output Pulse Generator (Runs independent of enable to ensure completion)
             if valid_count > 0 then
-                bit_vaild <= '1';
+                bit_vaild   <= '1';
                 valid_count <= valid_count - 1;
-                -- keep bit_out stable while valid
-                bit_out <= last_bit;
+                bit_out     <= last_bit;
             else
-                bit_vaild <= '0';
-                bit_out <= '0';
+                bit_vaild   <= '0';
+                bit_out     <= '0';
             end if;
 
+            -- 3. Measurement Logic (Active only when enabled)
             if enable = '1' then
-                -- Start counting on rising edge of button
+                
+                -- Detect Press Start (Rising Edge)
                 if btn_prev = '0' and btn_in = '1' then
                     pressing <= '1';
-                    count <= 1;
+                    count    <= 1;
 
-                -- Continue counting while pressed
+                -- Continue Counting
                 elsif pressing = '1' and btn_in = '1' then
                     count <= count + 1;
 
-                -- On release, evaluate length and generate bit + valid
-                elsif pressing = '1' and btn_prev = '1' and btn_in = '0' then
+                -- Detect Release (Falling Edge) & Evaluate Result
+                elsif pressing = '1' and btn_in = '0' then
                     if count >= K then
-                        last_bit <= '1';
+                        last_bit <= '1'; -- Long Press
                     else
-                        last_bit <= '0';
+                        last_bit <= '0'; -- Short Press
                     end if;
-                    valid_count <= 2; -- produce 2-clock pulse
-                    pressing <= '0';
-                    count <= 0;
+                    
+                    valid_count <= 2;     -- Trigger output pulse
+                    pressing    <= '0';   -- Reset state
+                    count       <= 0;
                 end if;
             else
-                -- If not enabled, clear any ongoing measurement
+                -- Reset measurement if enable drops
                 pressing <= '0';
-                count <= 0;
+                count    <= 0;
             end if;
         end if;
     end process;
