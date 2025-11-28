@@ -73,9 +73,9 @@ begin
                 elsif pressing = '1' and btn_prev = '1' and btn_in = '0' then
                     -- Determine Short vs Long
                     if count >= K then
-                        last_bit <= '1';
+                        last_bit <= '1'; -- Long Press
                     else
-                        last_bit <= '0';
+                        last_bit <= '0'; -- Short Press
                     end if;
                     
                     valid_count <= 2; -- Trigger the 2-clock pulse (overrides the decrement above)
