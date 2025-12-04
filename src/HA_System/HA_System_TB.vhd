@@ -1,0 +1,7 @@
+--------------------- Title ------------------------
+-- Project Name: HA_System
+-- File Name: HA_System_TB.vhd
+-- Author: Yuval Kogan
+-- Ver: 1
+-- Created Date: 4/12/25
+----------------------------------------------------
