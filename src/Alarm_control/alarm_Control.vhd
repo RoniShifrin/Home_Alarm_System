@@ -1,7 +1,7 @@
 --------------------- Title ------------------------
 -- Project Name: HA_System
--- File Name: alarm_Control.vhd
--- Author: Roni Shifrin
--- Ver: 1
--- Created Date: 4/12/25
+-- File Name   : Alarm_controller_FSM.vhd
+-- Author      : Yuval Kogan
+-- Ver         : 1
+-- Created Date: 04/12/25
 ----------------------------------------------------
